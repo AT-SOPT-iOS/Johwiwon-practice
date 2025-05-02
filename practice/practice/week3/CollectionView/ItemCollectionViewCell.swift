@@ -8,23 +8,10 @@
 
 import UIKit
 
-import SnapKit
-
 final class ItemCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "ItemCollectionViewCell"
-    weak var delegate: ItemCollectoinViewCellDelegate?
-    
-    
-    var itemRow: Int?
-    func dataBind(_ itemData: ItemModel, itemRow: Int) {
-            itemImageView.image = itemData.itemImg
-            nameLabel.text = itemData.name
-            priceLabel.text =  itemData.price + "원"
-            heartButton.isSelected = itemData.heartIsSelected
-            self.itemRow = itemRow
-        }
-    
+
     private let itemImageView = UIImageView()
     
     private let nameLabel: UILabel = {
@@ -47,7 +34,6 @@ final class ItemCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setImage(.heartRed, for: .normal)
         button.setImage(.heartRed, for: .selected)
-        // button.addTarget(self, action: #selector(heartButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -89,10 +75,14 @@ final class ItemCollectionViewCell: UICollectionViewCell {
             $0.size.equalTo(16)
         }
     }
-   
 }
 
-protocol ItemCollectoinViewCellDelegate: AnyObject {
-    func dataBind(_ itemData: ItemModel, itemRow: Int)
-    func heartButtonDidTapEvent(state: Bool, row: Int)
+// Data 바인딩
+extension ItemCollectionViewCell {
+    func dataBind(_ itemData: ItemModel) {
+        itemImageView.image = itemData.itemImg
+        nameLabel.text = itemData.name
+        priceLabel.text =  itemData.price + "원"
+        heartButton.isSelected = itemData.heartIsSelected
+     }
 }
