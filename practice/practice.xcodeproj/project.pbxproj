@@ -16,10 +16,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		14A236DC2DA7F51000EFF2D7 /* Exceptions for "practice" folder in "practice" target */ = {
+		1491109D2DD25A79007494B8 /* Exceptions for "practice" folder in "practice" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				APP/Info.plist,
 			);
 			target = 14A236C92DA7F50F00EFF2D7 /* practice */;
 		};
@@ -29,7 +29,7 @@
 		14A236CC2DA7F50F00EFF2D7 /* practice */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				14A236DC2DA7F51000EFF2D7 /* Exceptions for "practice" folder in "practice" target */,
+				1491109D2DD25A79007494B8 /* Exceptions for "practice" folder in "practice" target */,
 			);
 			path = practice;
 			sourceTree = "<group>";
@@ -83,6 +83,7 @@
 				14A236C62DA7F50F00EFF2D7 /* Sources */,
 				14A236C72DA7F50F00EFF2D7 /* Frameworks */,
 				14A236C82DA7F50F00EFF2D7 /* Resources */,
+				14D6056A2DCCCD0A00938DC9 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -123,6 +124,7 @@
 			packageReferences = (
 				14724AD72DC517A3000ACC90 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				14724ADA2DC517BA000ACC90 /* XCRemoteSwiftPackageReference "Then" */,
+				14D605692DCCCCBD00938DC9 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 14A236CB2DA7F50F00EFF2D7 /* Products */;
@@ -144,6 +146,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		14D6056A2DCCCD0A00938DC9 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		14A236C62DA7F50F00EFF2D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -163,8 +186,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = practice/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/practice/APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -190,8 +213,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = practice/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/practice/APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -366,6 +389,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.0.0;
+			};
+		};
+		14D605692DCCCCBD00938DC9 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

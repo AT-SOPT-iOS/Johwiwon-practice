@@ -1,0 +1,10 @@
+#
+//  .swiftlint.yml
+//  practice
+//
+//  Created by 조휘원 on 5/8/25.
+//
+
+disabled_rules:
+  - line_length
+  - trailing_whitespace
