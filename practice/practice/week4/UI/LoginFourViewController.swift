@@ -22,8 +22,41 @@ final class LoginFourViewController: UIViewController {
     }
 
     @objc private func infoViewButtonTap() {
-        //        let infoVC = InfoViewController()
-        //        self.present(infoVC, animated: true)
+        let infoVC = InfoViewController()
+        self.present(infoVC, animated: true)
+    }
+
+    @objc private func loginButtonTap() {
+        Task {
+            do {
+                let response = try await LoginService.shared.postLoginData(
+                    loginId: self.loginId,
+                    password: self.password
+                )
+                UserManager.shared.userId = Double(response.userId)
+                let alert = UIAlertController(
+                    title: "로그인 성공",
+                    message: "환영합니다!(userId: \(Int(response.userId)))",
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "확인", style: .default))
+                self.present(alert, animated: true)
+
+            } catch {
+                let alert = UIAlertController(
+                    title: "로그인 실패",
+                    message: error.localizedDescription,
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "확인", style: .default))
+                self.present(alert, animated: true)
+            }
+        }
+    }
+
+    @objc private func nicknameButtonTap() {
+        let loginPatchVC = LoginPatchViewController()
+        self.present(loginPatchVC, animated: true)
     }
 
     @objc private func textFieldDidEditing(_ textField: UITextField) {
@@ -41,7 +74,7 @@ final class LoginFourViewController: UIViewController {
         Task {
             do {
                 let response = try await RegisterService.shared
-                    .PostRegisterData(
+                    .postRegisterData(
                         loginId: self.loginId,
                         password: self.password,
                         nickname: self.nickName
@@ -70,21 +103,27 @@ final class LoginFourViewController: UIViewController {
     }
 
     private func setLayout() {
-        self.view.backgroundColor = .white
-        self.view.addSubview(stackView)
+        view.backgroundColor = .white
+        view.addSubview(stackView)
 
         stackView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(40)
-            $0.top.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(200)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.centerY.equalToSuperview()
         }
 
-        [
+        let elements = [
             idTextField, passwordTextField, nickNameTextField, registerButton,
-            infoViewButton,
-        ].forEach {
-            self.stackView.addArrangedSubview($0)
+            infoViewButton, loginButton,nickNameButton
+        ]
+
+        elements.forEach {
+            stackView.addArrangedSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(44)
+            }
         }
     }
+
     private let stackView = UIStackView().then {
         $0.axis = .vertical
         $0.distribution = .equalSpacing
@@ -122,7 +161,11 @@ final class LoginFourViewController: UIViewController {
     }
 
     private lazy var registerButton = UIButton().then {
-        $0.addTarget(self, action: #selector(registerButtonTap), for: .touchUpInside)
+        $0.addTarget(
+            self,
+            action: #selector(registerButtonTap),
+            for: .touchUpInside
+        )
         $0.backgroundColor = .blue
         $0.setTitle("회원가입", for: .normal)
         $0.titleLabel?.textColor = .white
@@ -136,6 +179,28 @@ final class LoginFourViewController: UIViewController {
         )
         $0.backgroundColor = .blue
         $0.setTitle("회원정보 조회", for: .normal)
+        $0.titleLabel?.textColor = .white
+    }
+
+    private lazy var loginButton = UIButton().then {
+        $0.addTarget(
+            self,
+            action: #selector(loginButtonTap),
+            for: .touchUpInside
+        )
+        $0.backgroundColor = .blue
+        $0.setTitle("로그인", for: .normal)
+        $0.titleLabel?.textColor = .white
+    }
+
+    private lazy var nickNameButton = UIButton().then {
+        $0.addTarget(
+            self,
+            action: #selector(nicknameButtonTap),
+            for: .touchUpInside
+        )
+        $0.backgroundColor = .blue
+        $0.setTitle("닉네임 관련 Task", for: .normal)
         $0.titleLabel?.textColor = .white
     }
 }

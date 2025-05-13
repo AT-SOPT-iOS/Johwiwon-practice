@@ -8,7 +8,7 @@ final class InfoViewController: UIViewController {
     // MARK: - Properties
 
     private var keyword: String = ""
-    private let userId: Int = 1 // 실제 로그인된 사용자 ID로 교체 필요
+    private let userId: Double = UserManager.shared.userId ?? 1
 
     // MARK: - Lifecycle
 
@@ -41,15 +41,20 @@ final class InfoViewController: UIViewController {
     // MARK: - Layout
 
     private func setLayout() {
-        self.view.addSubview(stackView)
+        view.addSubview(stackView)
 
         stackView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(40)
-            $0.top.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(200)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.centerY.equalToSuperview()
         }
 
         [keywordTextField, infoLabel, searchButton].forEach {
-            self.stackView.addArrangedSubview($0)
+            stackView.addArrangedSubview($0)
+        }
+
+        // 높이 고정
+        [keywordTextField, searchButton].forEach {
+            $0.snp.makeConstraints { $0.height.equalTo(44) }
         }
     }
 
@@ -82,6 +87,7 @@ final class InfoViewController: UIViewController {
     }
 
     private lazy var infoLabel = UILabel().then {
+        $0.text = "닉네임 리스트가 여기에 표시됩니다"
         $0.textColor = .black
         $0.textAlignment = .left
         $0.numberOfLines = 0
