@@ -57,6 +57,11 @@ final class LoginPatchViewController: UIViewController {
                 )
                 infoLabel.text = "닉네임이 '\(newValue)'으로 변경되었습니다!"
             } catch {
+                if let networkError = error as? NetworkError {
+                    print("에러 설명: \(networkError.errorDescription)")
+                } else {
+                    print("알 수 없는 에러: \(error.localizedDescription)")
+                }
                 infoLabel.text = "변경 실패: \(error.localizedDescription)"
             }
         }

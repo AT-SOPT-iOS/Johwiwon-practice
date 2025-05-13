@@ -17,16 +17,23 @@ final class PatchNickNameService {
         guard let request = RequestBuilder.makeRequest(
             path: "/users",
             method: .PATCH,
-            headers: ["userId": "\(userId)"],
+            headers: ["userId": "\(Int(userId))"],
             body: body
         ) else {
             throw NetworkError.requestEncodingError
         }
+        
+        print("PATCH 요청 URL:", request.url?.absoluteString ?? "없음")
+        print("PATCH 헤더:", request.allHTTPHeaderFields ?? [:])
+        print("PATCH Body:", String(data: body, encoding: .utf8) ?? "없음")
+
 
         let response = try await NetworkManager.shared.request(
             request,
             decodeType: APIResponse<EmptyResponse>.self
         )
+        
+        print("▶ PATCH 응답:", response)
 
         guard response.success else {
             throw NetworkError.custom(message: response.message)
