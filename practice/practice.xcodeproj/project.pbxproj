@@ -6,15 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		14724AD92DC517A3000ACC90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 14724AD82DC517A3000ACC90 /* SnapKit */; };
+		14724ADC2DC517BA000ACC90 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 14724ADB2DC517BA000ACC90 /* Then */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		14A236CA2DA7F50F00EFF2D7 /* practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		14A236DC2DA7F51000EFF2D7 /* Exceptions for "practice" folder in "practice" target */ = {
+		1491109D2DD25A79007494B8 /* Exceptions for "practice" folder in "practice" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				APP/Info.plist,
 			);
 			target = 14A236C92DA7F50F00EFF2D7 /* practice */;
 		};
@@ -24,7 +29,7 @@
 		14A236CC2DA7F50F00EFF2D7 /* practice */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				14A236DC2DA7F51000EFF2D7 /* Exceptions for "practice" folder in "practice" target */,
+				1491109D2DD25A79007494B8 /* Exceptions for "practice" folder in "practice" target */,
 			);
 			path = practice;
 			sourceTree = "<group>";
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14724ADC2DC517BA000ACC90 /* Then in Frameworks */,
+				14724AD92DC517A3000ACC90 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +54,7 @@
 			children = (
 				14A236CC2DA7F50F00EFF2D7 /* practice */,
 				14A236CB2DA7F50F00EFF2D7 /* Products */,
+				87ABC96B9882350B9D7DC8FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +64,13 @@
 				14A236CA2DA7F50F00EFF2D7 /* practice.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		87ABC96B9882350B9D7DC8FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,6 +83,7 @@
 				14A236C62DA7F50F00EFF2D7 /* Sources */,
 				14A236C72DA7F50F00EFF2D7 /* Frameworks */,
 				14A236C82DA7F50F00EFF2D7 /* Resources */,
+				14D6056A2DCCCD0A00938DC9 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -77,8 +93,6 @@
 				14A236CC2DA7F50F00EFF2D7 /* practice */,
 			);
 			name = practice;
-			packageProductDependencies = (
-			);
 			productName = practice;
 			productReference = 14A236CA2DA7F50F00EFF2D7 /* practice.app */;
 			productType = "com.apple.product-type.application";
@@ -107,6 +121,11 @@
 			);
 			mainGroup = 14A236C12DA7F50F00EFF2D7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				14724AD72DC517A3000ACC90 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				14724ADA2DC517BA000ACC90 /* XCRemoteSwiftPackageReference "Then" */,
+				14D605692DCCCCBD00938DC9 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 14A236CB2DA7F50F00EFF2D7 /* Products */;
 			projectDirPath = "";
@@ -127,6 +146,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		14D6056A2DCCCD0A00938DC9 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		14A236C62DA7F50F00EFF2D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -145,8 +185,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = practice/Info.plist;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/practice/APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -171,8 +212,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = practice/Info.plist;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/practice/APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -331,6 +373,46 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		14724AD72DC517A3000ACC90 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		14724ADA2DC517BA000ACC90 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		14D605692DCCCCBD00938DC9 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14724AD82DC517A3000ACC90 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14724AD72DC517A3000ACC90 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		14724ADB2DC517BA000ACC90 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14724ADA2DC517BA000ACC90 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14A236C22DA7F50F00EFF2D7 /* Project object */;
 }
